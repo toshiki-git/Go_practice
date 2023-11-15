@@ -92,10 +92,16 @@ func handleConn(conn net.Conn) {
 	defer mutex.Unlock()
 
 	scanner := bufio.NewScanner(conn)
+
+	str := "Hello, net pkg!"
+	data := []byte(str)
+	_, _ = conn.Write(data)
+
 	for scanner.Scan() {
 		msg := scanner.Text()
+		fmt.Printf("Received message %s\n", msg)
 
-		var newBlock Block
+		/* var newBlock Block
 		if err := json.Unmarshal([]byte(msg), &newBlock); err != nil {
 			log.Printf("Failed to unmarshal received block: %v", err)
 			continue
@@ -112,7 +118,7 @@ func handleConn(conn net.Conn) {
 			fmt.Printf("\nBlockchain: %s\n", string(bytes))
 		} else {
 			fmt.Printf("Received invalid block\n")
-		}
+		} */
 	}
 
 	if err := scanner.Err(); err != nil {
