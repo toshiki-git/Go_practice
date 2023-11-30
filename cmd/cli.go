@@ -1,4 +1,4 @@
-package cli
+package cmd
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func main() {
+func CliTest() {
 	app := &cli.App{
 		Name:  "calculator",
 		Usage: "A simple calculator app",
